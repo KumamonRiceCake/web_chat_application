@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Chat Room</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body class="room">
+        <div class="participants">
+            <h3>Participants</h3>
+            <div id="users">
+            </div>
+        </div>
+
+        <div class="chat">
+            <div class="room_title">
+                <h3 id="roomHeader">Anonymous</h3>
+            </div>
+
+            <ol id="messages" class="chat_history"></ol>
+
+            <div class="new_chat">
+                <form id="message-form">
+                    <input type="text" name="message"  placeholder="Message" autofocus autocomplete="off">
+                    <button>Send</button>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/template" id="message-template">
+            <li class="message">
+                <div class="message_header">
+                    <h4>{{from}}</h4>
+                    <span>{{timeStamp}}</span>
+                </div>
+                <div class="message_body">
+                    <p>{{text}}</p>
+                </div>
+            </li>
+        </script>
+
+        <script type="text/template" id="self-message-template">
+            <li class="self_message">
+                <div class="message_header">
+                    <h4>{{from}}</h4>
+                    <span>{{timeStamp}}</span>
+                </div>
+                <div class="message_body">
+                    <p>{{text}}</p>
+                </div>
+            </li>
+        </script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/js/libs/jquery-3.3.1.min.js">  </script>
+        <script type="text/javascript" src="/js/libs/moment.js"></script>
+        <script type="text/javascript" src="/js/libs/mustache.js"></script>
+        <script type="text/javascript" src="/js/libs/deparam.js"></script>
+        <script type="text/javascript" src="/js/chat.js"> </script>
+    </body>
+</html>

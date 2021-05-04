@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Chat Application</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+
+    <body class="main">
+        <div class="main_title">
+            <h3>Welcome to the Chat</h3>
+        </div>
+
+        <div class="main_options" >
+            <form action="/chatRoom.html">
+                <label>Display name</label>
+                <input type="text" name="name" autofocus>
+                <label>Room name</label>
+                <input type="text" name="room">
+                <label>Password</label>
+                <input type="text" name="password">
+                <button>Enter the Room</button>
+            </form>
+        </div>
+
+        <div class="main_rooms">
+            <table class="room_table" id="roomTable">
+                <tr>
+                    <th>Room Name</th>
+                    <th>Lock</th>
+                    <th>Participants</th>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    const socket = io();
+
+    socket.emit('requestRoomList');
+    socket.on('updateRoomList', function (rooms) {
+        let table = document.getElementById("roomTable");
+
+        //Update the table of current rooms
+        for (let i=0; i<rooms.length; i++) {
+            let row = table.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+
+            cell1.innerHTML = rooms[i].name;
+            if (rooms[i].password.length > 0) {
+                cell2.innerHTML = 'Private';  //Rooms with password
+            }
+            else {
+                cell2.innerHTML = 'Open';     //Rooms without password
+            }
+
+            cell3.innerHTML = rooms[i].participants;
+        }
+    });
+    </script>
+</html>
