@@ -10,7 +10,6 @@ class Rooms {
             participants: 1
         };
         this.rooms.push(room);
-        return room;
     }
 
     removeRoom(name) {

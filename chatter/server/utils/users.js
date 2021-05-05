@@ -10,7 +10,6 @@ class Users {
           room: room
         };
         this.users.push(user);
-        return user;
     }
 
     removeUser(id) {
