@@ -5,9 +5,9 @@ class Users {
 
     addUser(id, name, room) {
         let user = {
-          id: id,
-          name: name,
-          room: room
+            id: id,
+            name: name,
+            room: room
         };
         this.users.push(user);
     }
@@ -16,9 +16,9 @@ class Users {
         let removedUser = this.getUser(id);
 
         if(removedUser){
-          this.users = this.users.filter((user) => {
-            return user.id !== id;
-          });
+            this.users = this.users.filter((user) => {
+                return user.id !== id;
+            });
         }
 
         return removedUser;
@@ -26,7 +26,7 @@ class Users {
 
     getUser(id) {
         let user = this.users.filter((user) => {
-          return user.id === id;
+            return user.id === id;
         });
 
         return user[0];
@@ -34,11 +34,11 @@ class Users {
 
     getUserList(room){
         let users = this.users.filter((user) => {
-          return user.room === room;
+            return user.room === room;
         });
 
         let namesArray = users.map((user) => {
-          return user.name;
+            return user.name;
         });
 
         return namesArray;
